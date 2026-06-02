@@ -1,16 +1,11 @@
-FROM python:3.11
+FROM python:3.11-slim
 
 WORKDIR /app
 
-# Устанавливаем зависимости напрямую
-RUN pip install --no-cache-dir \
-    fastapi==0.115.0 \
-    uvicorn==0.30.0 \
-    httpx==0.27.0 \
-    pydantic-settings==2.5.0
+RUN pip install --no-cache-dir fastapi uvicorn httpx pydantic-settings
 
-# Копируем исходный код
-COPY ./src ./src
+COPY src/ ./src/
 
-# Запускаем приложение
+EXPOSE 8000
+
 CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
