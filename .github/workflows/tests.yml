@@ -2,6 +2,7 @@ name: Test Python App
 
 on:
   push:
+    branches: [ "dev", "main" ]
 
 jobs:
   ci:
@@ -22,4 +23,3 @@ jobs:
 
       - name: Run tests
         run: python -m pytest tests/
-
